@@ -1,0 +1,26 @@
+[
+  {
+    "id": "5a85c05a-ccd7-4e1f-b41e-a8b1ebc0ada9",
+    "type": "admin",
+    "actor": "muneeb",
+    "action": "Login",
+    "detail": "support logged in from 127.0.0.1",
+    "createdAt": "2026-06-28T08:05:56.750Z"
+  },
+  {
+    "id": "11805af7-eb1b-44be-b7ba-4a4848f36ac3",
+    "type": "admin",
+    "actor": "Administrator",
+    "action": "User Created",
+    "detail": "muneeb (support)",
+    "createdAt": "2026-06-28T08:05:36.225Z"
+  },
+  {
+    "id": "ed41f7aa-a454-433d-8fa2-9718e8c7f4e5",
+    "type": "admin",
+    "actor": "Administrator",
+    "action": "Login",
+    "detail": "admin logged in from 127.0.0.1",
+    "createdAt": "2026-06-28T08:04:59.681Z"
+  }
+]
