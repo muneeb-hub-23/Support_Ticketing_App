@@ -134,3 +134,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# React build output
+client/build/
+
+# Server runtime data (contains hashed passwords & ticket data — keep locally only)
+server/data/users.json
+
+# OS
+.DS_Store
+Thumbs.db
