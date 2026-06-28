@@ -1,0 +1,22 @@
+[
+  {
+    "id": "587c9626-c167-49d9-a235-602a169c618f",
+    "name": "Administrator",
+    "email": "admin@support.local",
+    "password": "$2b$10$4zyCv70OgF4Q1KhqqB677OL2FZeHnKJSYyqi7CGGkZMcKEUp9Mzoy",
+    "role": "admin",
+    "active": true,
+    "createdAt": "2026-06-28T07:58:16.243Z",
+    "lastLogin": "2026-06-28T08:04:59.678Z"
+  },
+  {
+    "id": "e9ab84ff-1b0b-48e8-88ff-70549d01477e",
+    "name": "muneeb",
+    "email": "muneeb@hitec-dc.edu.pk",
+    "password": "$2b$10$LLzScDQU1oRyNTbtp1EAAuQ/STgtIFzuHD2N.N8Qk999q05t.ILw2",
+    "role": "support",
+    "active": true,
+    "createdAt": "2026-06-28T08:05:36.224Z",
+    "lastLogin": "2026-06-28T08:05:56.748Z"
+  }
+]

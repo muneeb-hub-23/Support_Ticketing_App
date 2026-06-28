@@ -1,0 +1,17 @@
+[
+  {
+    "id": "8b2ec067-61df-4e45-839b-f62c105e0a54",
+    "title": "Illustrator Not Working",
+    "description": "my illustrator suddenly shutting down",
+    "priority": "medium",
+    "category": "Software",
+    "status": "open",
+    "createdBy": "Muneeb",
+    "email": "",
+    "agentId": null,
+    "hostname": null,
+    "createdAt": "2026-06-28T07:22:34.598Z",
+    "updatedAt": "2026-06-28T07:22:34.599Z",
+    "comments": []
+  }
+]
