@@ -29,6 +29,34 @@
       "author": "Muneeb",
       "text": "Printer issues",
       "createdAt": "2026-06-28T07:55:24.758Z"
+    },
+    {
+      "id": "8d3cd871-9ed6-4fad-aa69-37099e74f0d8",
+      "channel": "support",
+      "author": "User",
+      "text": "hi",
+      "createdAt": "2026-06-30T05:55:27.328Z"
+    },
+    {
+      "id": "1aa37606-7fd0-4e01-bf43-2112ef990e21",
+      "channel": "support",
+      "author": "User",
+      "text": "i have printer problem",
+      "createdAt": "2026-06-30T05:55:34.983Z"
+    },
+    {
+      "id": "4123f48d-79dd-4fc8-9a27-60e8078c676d",
+      "channel": "support",
+      "author": "User",
+      "text": "my internet not working",
+      "createdAt": "2026-06-30T05:55:47.863Z"
+    },
+    {
+      "id": "a576f3c3-fec2-446b-a0a7-8d5b01a51276",
+      "channel": "support",
+      "author": "muneeb",
+      "text": "Email problems",
+      "createdAt": "2026-06-30T05:56:19.513Z"
     }
   ]
 }

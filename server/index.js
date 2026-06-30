@@ -703,7 +703,7 @@ socket.on('cmd:keyType', (data) => {
 });
 
 socket.on('cmd:checkUpdates', () => {
-  const cmd = 'powershell -NonInteractive -Command "$wu=New-Object -ComObject Microsoft.Update.Session; $s=$wu.CreateUpdateSearcher(); try { $r=$s.Search(\"IsInstalled=0 and Type=\'Software\'\"); $l=@(); foreach($u in $r.Updates){$kb=if($u.KBArticleIDs.Count-gt 0){\"KB\"+$u.KBArticleIDs[0]}else{\"\"}; $sz=[math]::Round($u.MaxDownloadSize/1MB,1); $l+=[PSCustomObject]@{Title=$u.Title;KB=$kb;Size=\"$sz MB\";Severity=$u.MsrcSeverity}}; $l|ConvertTo-Json -Compress } catch { Write-Output \"[{\\\"Title\\\":\\\"Error: \"+$_.Exception.Message+\"\\\",\\\"KB\\\":\\\"\\\",\\\"Size\\\": \\\"\\\"}]\" }"';
+  const cmd = 'powershell -NonInteractive -Command "$wu=New-Object -ComObject Microsoft.Update.Session; $s=$wu.CreateUpdateSearcher(); try { $r=$s.Search(\"IsInstalled=0 and Type=\\'Software\\'\"); $l=@(); foreach($u in $r.Updates){$kb=if($u.KBArticleIDs.Count-gt 0){\"KB\"+$u.KBArticleIDs[0]}else{\"\"}; $sz=[math]::Round($u.MaxDownloadSize/1MB,1); $l+=[PSCustomObject]@{Title=$u.Title;KB=$kb;Size=\"$sz MB\";Severity=$u.MsrcSeverity}}; $l|ConvertTo-Json -Compress } catch { Write-Output \"[{\\\"Title\\\":\\\"Error: \"+$_.Exception.Message+\"\\\",\\\"KB\\\":\\\"\\\",\\\"Size\\\": \\\"\\\"}]\" }"';
   exec(cmd, { timeout: 90000 }, (err, stdout, stderr) => {
     let updates = [];
     const raw = (stdout || '').trim();
@@ -719,7 +719,7 @@ socket.on('cmd:checkUpdates', () => {
 });
 
 socket.on('cmd:installUpdates', () => {
-  const cmd = 'powershell -NonInteractive -Command "$wu=New-Object -ComObject Microsoft.Update.Session; $s=$wu.CreateUpdateSearcher(); $r=$s.Search(\"IsInstalled=0 and Type=\'Software\'\"); if($r.Updates.Count -eq 0){Write-Output \'No updates available.\'; exit 0}; Write-Output \"Found $($r.Updates.Count) update(s). Downloading...\"; $d=$wu.CreateUpdateDownloader(); $d.Updates=$r.Updates; $d.Download()|Out-Null; Write-Output \'Download complete. Installing...\'; $i=$wu.CreateUpdateInstaller(); $i.Updates=$r.Updates; $ir=$i.Install(); Write-Output \"Done. Result=$($ir.ResultCode) RebootRequired=$($ir.RebootRequired)\""';
+  const cmd = 'powershell -NonInteractive -Command "$wu=New-Object -ComObject Microsoft.Update.Session; $s=$wu.CreateUpdateSearcher(); $r=$s.Search(\"IsInstalled=0 and Type=\\'Software\\'\"); if($r.Updates.Count -eq 0){Write-Output \\'No updates available.\\'; exit 0}; Write-Output \"Found $($r.Updates.Count) update(s). Downloading...\"; $d=$wu.CreateUpdateDownloader(); $d.Updates=$r.Updates; $d.Download()|Out-Null; Write-Output \\'Download complete. Installing...\\'; $i=$wu.CreateUpdateInstaller(); $i.Updates=$r.Updates; $ir=$i.Install(); Write-Output \"Done. Result=$($ir.ResultCode) RebootRequired=$($ir.RebootRequired)\""';
   exec(cmd, { timeout: 600000 }, (err, stdout, stderr) => {
     socket.emit('agent:commandResult', { agentId, cmdId: 'installUpdates', output: stdout || stderr || (err ? err.message : 'Update install triggered'), error: !!err });
   });

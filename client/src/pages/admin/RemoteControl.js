@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Monitor, Cpu, RefreshCw, Power, Lock, HardDrive,
   Download, Calendar, MousePointer, Keyboard, Camera, Play, Square,
-  AlertTriangle, CheckCircle, ChevronRight, Activity
+  AlertTriangle, CheckCircle, ChevronRight, Activity, Maximize2, Minimize2
 } from 'lucide-react';
 import socket from '../../socket';
 import { toast } from 'react-toastify';
@@ -30,8 +30,10 @@ export default function AdminRemoteControl() {
   const [logs, setLogs] = useState([]);
   const [dateTime, setDateTime] = useState('');
   const [customApp, setCustomApp] = useState('');
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const imgRef = useRef(null);
   const wrapRef = useRef(null);
+  const fullscreenRef = useRef(null);
   const termOutputRef = useRef(null);
   const cmdCounter = useRef(0);
   const liveViewRef = useRef(false);
@@ -153,6 +155,28 @@ export default function AdminRemoteControl() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
+  const toggleFullscreen = useCallback(() => {
+    if (!isFullscreen) {
+      setIsFullscreen(true);
+    } else {
+      setIsFullscreen(false);
+    }
+  }, [isFullscreen]);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsFullscreen(false);
+      }
+    };
+    if (isFullscreen) {
+      window.addEventListener('keydown', handleEscape, true);
+    }
+    return () => window.removeEventListener('keydown', handleEscape, true);
+  }, [isFullscreen]);
+
   const checkUpdates = () => {
     setLoadingUpdates(true);
     setUpdates(null);
@@ -248,17 +272,29 @@ export default function AdminRemoteControl() {
             <span style={{fontSize:'12px', color:'var(--text-secondary)'}}>
               {controlEnabled ? '🎮 Control Mode — keyboard & mouse active' : '👁️ View Only — click to enable control'}
             </span>
+            <button className={`tool-btn ${isFullscreen?'active':''}`} onClick={toggleFullscreen} title={isFullscreen ? 'Exit Fullscreen (Esc)' : 'Fullscreen'}>
+              {isFullscreen ? <Minimize2 size={16}/> : <Maximize2 size={16}/>}
+            </button>
             {liveView && <span style={{fontSize:'12px', color:'var(--accent-green)', marginLeft:'auto'}}>
               <span className="dot dot-yellow" style={{marginRight:'4px'}}></span>Live streaming
             </span>}
           </div>
-          <div className="remote-screen-wrap" ref={wrapRef}
+          <div className={`remote-screen-wrap ${isFullscreen ? 'remote-screen-fullscreen' : ''}`} ref={(el) => { wrapRef.current = el; fullscreenRef.current = el; }}
             onMouseMove={handleScreenMouseMove}
             onMouseDown={handleScreenClick}
             onWheel={handleScreenScroll}
             onContextMenu={e => { e.preventDefault(); handleScreenClick(e); }}
             tabIndex={0}
           >
+            {isFullscreen && (
+              <button
+                className="fullscreen-exit-btn"
+                onClick={() => setIsFullscreen(false)}
+                title="Exit Fullscreen (Esc)"
+              >
+                <Minimize2 size={18}/> Exit Fullscreen
+              </button>
+            )}
             {screenshot
               ? <img ref={imgRef} src={screenshot} alt="Remote Screen" draggable={false} />
               : <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', color:'var(--text-muted)'}}>
