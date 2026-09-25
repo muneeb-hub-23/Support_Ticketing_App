@@ -1,5 +1,13 @@
 [
   {
+    "id": "cba13dbe-ae08-4c55-a4bc-f754b8fc5d42",
+    "type": "admin",
+    "actor": "Administrator",
+    "action": "Login",
+    "detail": "admin logged in from 127.0.0.1",
+    "createdAt": "2026-08-03T18:14:53.421Z"
+  },
+  {
     "id": "4f4da661-a536-4bac-8605-94c1b207e0f9",
     "type": "admin",
     "actor": "Administrator",
