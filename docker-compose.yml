@@ -1,0 +1,26 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+    volumes:
+      - server-data:/app/server/data
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./client
+      args:
+        - REACT_APP_SERVER_URL=
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  server-data:

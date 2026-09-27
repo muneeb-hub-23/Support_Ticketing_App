@@ -1,0 +1,12 @@
+.git
+node_modules
+client/node_modules
+client/build
+server/data
+test_escape.js
+*.log
+.env
+.env.*
+docker-compose.yml
+Dockerfile
+.dockerignore
